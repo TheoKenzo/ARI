@@ -4,14 +4,16 @@
   "description": "Sistema de Agendamento de Remédios para Idosos",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node ./src/server.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@prisma/client": "^5.20.0",
-    "express": "^4.21.0",
+    "express": "^4.21.0"
+  },
+  "devDependencies": {
     "prisma": "^5.20.0"
   }
 }
