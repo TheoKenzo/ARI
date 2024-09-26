@@ -1,4 +1,6 @@
 const express = require('express');
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocs = require('../swaggerConfig');
 
 const deleteHistorico = require("./http/routes/Historico/deleteHistorico");
 const getHistorico = require("./http/routes/Historico/getHistorico");
@@ -22,25 +24,27 @@ const putUsuario = require("./http/routes/Usuario/putUsuario");
 
 const app = express();
 
-app.use("/delete-historico", deleteHistorico);
-app.use("/get-historico", getHistorico);
-app.use("/post-historico", postHistorico);
-app.use("/put-historico", putHistorico);
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
-app.use("/delete-prescricao", deletePrescricao);
-app.use("/get-prescricao", getPrescricao);
-app.use("/post-prescricao", postPrescricao);
-app.use("/put-prescricao", putPrescricao);
+app.get("/historicos", getHistorico);
+app.post("/historicos", postHistorico);
+app.put("/historicos", putHistorico);
+app.delete("/historicos", deleteHistorico);
 
-app.use("/delete-remedio", deleteRemedio);
-app.use("/get-remedio", getRemedio);
-app.use("/post-remedio", postRemedio);
-app.use("/put-remedio", putRemedio);
+app.get("/prescricoes", getPrescricao);
+app.post("/prescricoes", postPrescricao);
+app.put("/prescricoes", putPrescricao);
+app.delete("/prescricoes", deletePrescricao);
 
-app.use("/delete-usuario", deleteUsuario);
-app.use("/get-usuario", getUsuario);
-app.use("/post-usuario", postUsuario);
-app.use("/put-usuario", putUsuario);
+app.get("/remedios", getRemedio);
+app.post("/remedios", postRemedio);
+app.put("/remedios/:id", putRemedio);
+app.delete("/remedios", deleteRemedio);
+
+app.get("/usuarios", getUsuario);
+app.post("/usuarios", postUsuario);
+app.put("/usuarios", putUsuario);
+app.delete("/usuarios", deleteUsuario);
 
 app.listen(3000, () => {
     console.log("Servidor rodando na porta 3000");

@@ -4,6 +4,51 @@ const prisma = require("../../../../prisma/prismaClient");
 const router = express.Router();
 router.use(express.json());
 
+/**
+ * @swagger
+ * tags:
+ *   - name: Prescrições
+ *     description: Operações relacionadas a prescrições
+ * /prescricoes:
+ *   put:
+ *     summary: Atualizar uma prescrição
+ *     description: Atualiza uma prescrição existente com base no ID fornecido.
+ *     tags: [Prescrições]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               id:
+ *                 type: integer
+ *                 description: ID da prescrição a ser atualizada.
+ *               observacao:
+ *                 type: string
+ *                 description: Nova observação da prescrição.
+ *               id_remedio:
+ *                 type: integer
+ *                 description: Novo ID do remédio associado à prescrição.
+ *               frequencia:
+ *                 type: string
+ *                 format: date
+ *                 description: Nova frequência da prescrição.
+ *               dt_inicio:
+ *                 type: string
+ *                 format: date
+ *                 description: Nova data de início da prescrição.
+ *               dt_fim:
+ *                 type: string
+ *                 format: date
+ *                 description: Nova data de fim da prescrição.
+ *     responses:
+ *       200:
+ *         description: Prescrição atualizada com sucesso.
+ *       400:
+ *         description: Erro ao atualizar a prescrição.
+ */
+
 router.put("/", async (req, res) => {
     const { id, observacao, id_remedio, frequencia, dt_inicio, dt_fim } = req.body;
 

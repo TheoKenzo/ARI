@@ -4,6 +4,37 @@ const prisma = require("../../../../prisma/prismaClient");
 const router = express.Router();
 router.use(express.json());
 
+/**
+ * @swagger
+ * tags:
+ *   - name: Históricos
+ *     description: Operações relacionadas a históricos
+ * /historicos:
+ *   post:
+ *     summary: Criar um novo histórico
+ *     description: Adiciona um novo histórico ao sistema com base nas informações fornecidas.
+ *     tags: [Históricos]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               id_prescricao:
+ *                 type: integer
+ *                 description: ID da prescrição associada ao histórico.
+ *               data_atual:
+ *                 type: string
+ *                 format: date
+ *                 description: Data do histórico.
+ *     responses:
+ *       201:
+ *         description: Histórico criado com sucesso.
+ *       400:
+ *         description: Erro ao criar o histórico.
+ */
+
 router.post("/", async (req, res) => {
   const { id_prescricao, data_atual } = req.body;
 
